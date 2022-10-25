@@ -52,6 +52,7 @@ body
 .main {
     max-width: 50%;
     margin: auto;
+    background-color: #8f8fbd;
 }
 
 .frame {
