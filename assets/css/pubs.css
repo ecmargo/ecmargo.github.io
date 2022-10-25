@@ -1,0 +1,33 @@
+dd {
+  opacity: 0.75;
+}
+
+p.hanging {
+  text-indent: -1rem;
+  padding-left: 1rem;
+}
+
+.paper {
+  font-size: 20px;
+}
+
+.papers em > a {
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.papers em > a:hover {
+  font-size: 16px;
+  background-color: #a5fff9;
+}
+
+a.icon {
+  text-decoration: none;
+  font-size: 60px;
+}
+
+a.fa-brands {
+  text-decoration: none;
+  font-size: 60px;
+}
+
