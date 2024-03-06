@@ -1,0 +1,77 @@
+title: Elizabeth "Eli" Margolin
+author: Eli Margolin
+interests: >
+I'm a 3rd year PhD student in the University of Pennsylvania advised by
+[Sebastian Angel](https://www.cis.upenn.edu/~sga001/). I am broadly interested
+in adapting traditional security frameworks to be more privacy preserving using
+techniques such as Zero-Knowledge Proofs. 
+I'm always open to collaboration or disucssions about privacy and security! Feel free to reach out!
+bio: >
+Before starting my PhD I worked for 3 years in industry as a Security Engineer
+at Meta. During my Master's at Duke University I was fortunate to work
+with [Ashwin Machanavajjhala](https://users.cs.duke.edu/~ashwin/) and [Charles Becker](https://sites.duke.edu/charlesbecker/). I completed my Bachelor's at
+Stanford. 
+
+I'm originally from New Orleans and spend most of my free time rowing with
+[Vesper Boat Club](https://vesperboatclub.org/).
+email: ecmargo@seas.upenn.edu
+description: Cryptography, Privacy, Zero-knowledge, zkSNARK, Reef, PhD, Meta,
+Facebook, Eli, Margolin, Elizabeth, Stanford, Penn, Duke
+show_excerpts: true # set to true to show excerpts on the homepage
+
+# Minima date format
+# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+sass:
+  sass_dir: _sass
+plainwhite:
+  name: Elizabeth "Eli" Margolin
+  tagline: "PhD student at the University of Pennsylvania"
+  date_format: "%b %-d, %Y"
+  sitemap: true # set to true to generate sitemap.xml content
+  search: false # set to true to enable searchbar
+  dark_mode: true # set to true to add dark mode toggle
+  portfolio_image: "assets/images/me.jpg" # the path from the base directory of the site to the image to display (no / at the start)
+  html_lang: "en" # set the lang attribute of the <html> tag for the pages. See here for a list of codes: https://www.w3schools.com/tags/ref_country_codes.asp
+  navigation:
+    - title: Publications
+      url: "/publications"
+    - title: Teaching
+      url: "/teaching"
+    - title: Resume
+      url: "/resume"
+  condensed_mobile:
+    #- home
+    - page
+  # generate social links in footer
+  social_links:
+    # twitter: elefthei
+    github:  ecmargo
+    linkedIn: in/elizabeth-m-9a4473a1/
+    email: ecmargo@seas.upenn.edu
+    # orcid: "https://orcid.org/0000-0003-2749-797X"
+    #flickr:   jekyll
+    #instagram: jekyll
+    #pinterest: jekyll
+    #youtube: jekyll
+    #facebook: jekyll
+    #soundcloud: jekyll
+    #gitlab: jekyll
+
+    # Mastodon instances
+    # mastodon:
+    # - username: jekyll
+    #   instance: example.com
+    # - username: jekyll2
+    #   instance: example.com
+
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+#header_pages:
+# - about.md
+
+# Build settings
+theme: plainwhite
+
+plugins:
+  - jekyll-seo-tag
+#  - jekyll-feed
