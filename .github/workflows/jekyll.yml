@@ -3,6 +3,25 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
+steps:
+  - name: Install rbenv and ruby-build
+    run: |
+      sudo apt update
+      sudo apt install -y git build-essential libssl-dev libreadline-dev zlib1g-dev
+      git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+      echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+      echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+      git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+      export PATH="$HOME/.rbenv/bin:$PATH"
+      eval "$(rbenv init -)"
+  - name: Install Ruby
+    run: |
+      export PATH="$HOME/.rbenv/bin:$PATH"
+      eval "$(rbenv init -)"
+      rbenv install 3.1.0
+      rbenv global 3.1.0
+      ruby -v
+      
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
 name: Deploy Jekyll site to Pages
 
