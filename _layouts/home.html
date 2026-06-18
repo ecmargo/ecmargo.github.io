@@ -29,6 +29,24 @@ layout: default
     </li>
     </ul>
 
+{%- if site.selected_work.size > 0 -%}
+  <ul class="posts">
+    <li class="posts-labelgroup" id="posts-labelgroup">
+      <h2 id="posts-label">Selected Work</h2>
+    </li>
+    {%- for item in site.selected_work -%}
+    <li>
+      <h2 class="post-title" style="font-size: 19px;">{{ item.title }}<span style="font-weight: normal; opacity: 0.7;"> — {{ item.venue }}</span></h2>
+      <div class="post">
+        {{ item.desc }}
+        {% if item.paper %}[<a href="{{ item.paper | relative_url }}">paper</a>]{% endif %}
+        {% if item.code %}[<a href="{{ item.code }}" target="_blank">code</a>]{% endif %}
+      </div>
+    </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
+
 {%- if site.posts.size > 0 -%}
   <ul class="posts">
     <li class="posts-labelgroup" id="posts-labelgroup">

@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+{%- if page.title and page.show_title -%}
+  <h1 class="page-heading">{{ page.title }}</h1>
+{%- endif -%}
+
+{%- if page.download -%}
+<ul class="posts">
+    <li>
+      <div class="post">
+        <a href="{{ page.download | relative_url }}">⬇ Download resume (PDF)</a>
+      </div>
+    </li>
+</ul>
+{%- endif -%}
+
+{%- for section in page.sections -%}
+<ul class="posts">
+    <li class="posts-labelgroup" id="posts-labelgroup">
+      <h2 id="posts-label">{{ section.label }}</h2>
+    </li>
+    {%- for item in section.items -%}
+    <li>
+      {%- if item.title -%}
+      <h2 class="post-title" style="font-size: 19px;">{{ item.title }}{% if item.meta %}<span style="font-weight: normal; opacity: 0.7;"> — {{ item.meta }}</span>{% endif %}</h2>
+      {%- endif -%}
+      <div class="post">
+        {% if item.body %}{{ item.body }} {% endif %}{% for link in item.links %}[<a href="{{ link.url | relative_url }}"{% unless link.url contains '/assets/' %} target="_blank"{% endunless %}>{{ link.text }}</a>]{% unless forloop.last %} {% endunless %}{% endfor %}
+      </div>
+    </li>
+    {%- endfor -%}
+</ul>
+{%- endfor -%}
