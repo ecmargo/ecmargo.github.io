@@ -3,22 +3,14 @@ author: Eli Margolin
 interests: >
   I'm a PhD candidate at the University of Pennsylvania advised by
   [Sebastian Angel](https://www.cis.upenn.edu/~sga001/), where I build
-  **zero-knowledge proof systems**. I designed and performance-optimized the
-  provers and circuits behind [Reef](https://github.com/eniac/Reef) (USENIX
-  Security 2024) and [Coral](https://github.com/eniac/coral) (IEEE S&P 2026),
-  working primarily in **Rust** and **C++**. My current focus is using
-  cryptographic tools, including zero-knowledge proofs, to make AI systems
-  **auditable and accountable**. I'm always open to collaboration or discussions
-  about cryptography, privacy, and security — feel free to reach out!
-bio: >
-  Before starting my PhD I spent 3 years as a Security Engineer at Meta, building
-  company-wide insider-threat and abuse-detection tooling. During my Master's at
-  Duke University I was fortunate to work on differential privacy with
-  [Ashwin Machanavajjhala](https://users.cs.duke.edu/~ashwin/) and
-  [Charles Becker](https://sites.duke.edu/charlesbecker/); I completed my
-  Bachelor's at Stanford. I'm originally from New Orleans and spend my free time
-  rowing with [Vesper Boat Club](https://vesperboatclub.org/) and
+  **zero-knowledge proof systems**. In my free time I row with
+  [Vesper Boat Club](https://vesperboatclub.org/) and
   [Team USA](https://usrowing.org/rosters/2025-senior/eli-margolin).
+
+
+  I'm always open to collaboration or discussions about cryptography, privacy,
+  or rowing — feel free to reach out! You can reach me at
+  [ecmargo@seas.upenn.edu](mailto:ecmargo@seas.upenn.edu).
 email: ecmargo@seas.upenn.edu
 description: Zero-knowledge proofs, zkSNARK, applied cryptography, Rust, C++, formal methods, Coq, security engineer, differential privacy, AI auditability, Reef, Coral, Eli Margolin, Elizabeth, Penn, Stanford, Duke, Meta
 show_excerpts: true # set to true to show excerpts on the homepage
@@ -27,17 +19,17 @@ show_excerpts: true # set to true to show excerpts on the homepage
 selected_work:
   - title: "Coral"
     venue: "IEEE S&P 2026"
-    desc: "Fast, succinct zero-knowledge proofs for context-free grammars. Designed and performance-optimized the prover and circuits."
+    desc: "Fast, succinct zero-knowledge proofs for context-free grammars, enabling verifiable parsing and structured-data checks without revealing the underlying input."
     paper: "https://eprint.iacr.org/2025/1420"
     code: "https://github.com/eniac/coral"
   - title: "Reef"
     venue: "USENIX Security 2024"
-    desc: "Fast, succinct zero-knowledge proofs of regular-expression matching. Built and performance-tuned the prover."
+    desc: "Fast, succinct zero-knowledge proofs of regular-expression matching, letting a prover show that a private input matches a pattern without disclosing the input itself."
     paper: "https://eprint.iacr.org/2023/1886"
     code: "https://github.com/eniac/Reef"
   - title: "Arboretum"
     venue: "SOSP 2023"
-    desc: "A planner for massive-scale federated analytics with differential privacy. First author."
+    desc: "A planner for massive-scale federated analytics with differential privacy, optimizing query execution across distributed data while bounding the total privacy budget."
     paper: "/assets/pdf/arboretum-sosp2023.pdf"
     code: "https://github.com/ecmargo/arboretum"
 
