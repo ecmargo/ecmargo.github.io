@@ -18,7 +18,7 @@ sections:
     items:
       - title: "University of Pennsylvania — PhD Researcher, Cryptography &amp; Programming Languages"
         meta: "2021–present"
-        body: "<ul><li>Designed and built zero-knowledge proof systems for formal languages and zkTLS protocols that let users prove facts about private data and real web sessions; owned the work from problem formulation and protocol design through open-source implementation and evaluation.</li><li>Designed and built a planner that automatically compiles differentially private analytics queries into secure multi-party and homomorphic computations at billion-device scale.</li><li>Work published at IEEE S&amp;P, USENIX Security, and SOSP; two further papers in submission.</li><li>Advised by Sebastian Angel. Dissertation: <em>Zero Knowledge Proofs of Formal Languages and Their Applications</em>.</li></ul>"
+        body: "<ul><li>Designed and built zero-knowledge proof systems for formal languages and zkTLS protocols that let users prove facts about private data and real web sessions; owned the work from problem formulation and protocol design through open-source implementation and evaluation.</li><li>Designed and built a planner that automatically compiles differentially private analytics queries into secure multi-party and homomorphic computations at billion-device scale.</li><li>Work published at IEEE S&amp;P, USENIX Security, and SOSP.</li><li>Advised by Sebastian Angel. Dissertation: <em>Zero Knowledge Proofs of Formal Languages and Their Applications</em>.</li></ul>"
       - title: "Brave Software — Research Intern"
         meta: "Summer 2024"
         body: "<ul><li>Designed zero-knowledge protocols for privacy-preserving fraud detection over authenticated web traffic, taking research designs through to deployable implementations.</li><li>Built and hardened cryptographic tooling to interoperate with modern TLS stacks.</li></ul>"
@@ -45,18 +45,12 @@ sections:
             url: https://github.com/eniac/Reef
       - title: "Arboretum: A Planner for Large-Scale Federated Analytics with Differential Privacy"
         meta: "SOSP 2023"
-        body: "E. Margolin, K. Newatia, E. Roth, T. Luo, A. Haeberlen."
+        body: "E. Margolin, K. Newatia, E. Roth, T. Luo, A. Haeberlen. <em>* Authors listed in alphabetical order.</em>"
         links:
           - text: paper
             url: /assets/pdf/arboretum-sosp2023.pdf
           - text: code
             url: https://github.com/ecmargo/arboretum
-      - title: "Weasel: Zero Knowledge Proofs of WASM Compilation"
-        meta: "In submission"
-        body: "J. Woods, E. Margolin, E. Ioannidis, S. Angel, P. Mishra."
-      - title: "Surf: Bringing zkTLS to the Modern Web"
-        meta: "In submission"
-        body: "S. Angel, S. Celi, E. Margolin*. <em>* Authors listed in alphabetical order.</em>"
   - label: Education
     items:
       - title: "University of Pennsylvania — PhD, Computer and Information Science"

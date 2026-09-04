@@ -61,7 +61,7 @@ CONTENT = {
                 "formulation and protocol design through open-source implementation and evaluation.",
                 "Designed and built a planner that automatically compiles differentially private analytics "
                 "queries into secure multi-party and homomorphic computations at billion-device scale.",
-                "Work published at IEEE S&P, USENIX Security, and SOSP; two further papers in submission.",
+                "Work published at IEEE S&P, USENIX Security, and SOSP; two further papers in submission.",  # SITE_VARIANT
                 "Advised by Sebastian Angel. Dissertation: *Zero Knowledge Proofs of Formal Languages and "
                 "Their Applications*.",
             ],
@@ -104,11 +104,11 @@ CONTENT = {
         {"title": "Weasel: Zero Knowledge Proofs of WASM Compilation",
          "authors": "J. Woods, E. Margolin, E. Ioannidis, S. Angel, P. Mishra",
          "venue": "In submission",
-         "links": []},
+         "links": [], "site": False},
         {"title": "Surf: Bringing zkTLS to the Modern Web",
          "authors": "S. Angel, S. Celi, E. Margolin*",
          "venue": "In submission",
-         "links": []},
+         "links": [], "site": False},
     ],
     "pub_note": "* Authors listed in alphabetical order.",
     "education": [
@@ -122,6 +122,22 @@ CONTENT = {
           "A Finalist, 2025 World Rowing Championships, Shanghai."]),
     ],
 }
+
+SITE_VARIANTS = {
+    "Work published at IEEE S&P, USENIX Security, and SOSP; two further papers in submission.":
+    "Work published at IEEE S&P, USENIX Security, and SOSP.",
+}
+
+
+def site_content():
+    """CONTENT for the website: omits publications marked site: False and swaps site-variant strings."""
+    import copy
+    c = copy.deepcopy(CONTENT)
+    c["publications"] = [pub for pub in c["publications"] if pub.get("site", True)]
+    for e in c["experience"]:
+        e["bullets"] = [SITE_VARIANTS.get(b, b) for b in e["bullets"]]
+    return c
+
 
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
 MARK_RE = re.compile(r"\*\*(.+?)\*\*|\*(.+?)\*")
@@ -146,7 +162,7 @@ def segments(text):
 # ----------------------------------------------------------------------------
 # DOCX
 # ----------------------------------------------------------------------------
-def build_docx(path):
+def build_docx(path, C=CONTENT):
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
     from docx.oxml import OxmlElement
@@ -233,42 +249,42 @@ def build_docx(path):
 
     # Header
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run(CONTENT["name"]); r.bold = True; r.font.size = Pt(20)
+    r = p.add_run(C["name"]); r.bold = True; r.font.size = Pt(20)
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    for i, (txt, url) in enumerate(CONTENT["contact"]):
+    for i, (txt, url) in enumerate(C["contact"]):
         if i:
             p.add_run("  ·  ")
         add_hyperlink(p, txt, url)
 
     header("Summary")
-    p = doc.add_paragraph(); add_runs(p, CONTENT["summary"])
+    p = doc.add_paragraph(); add_runs(p, C["summary"])
 
     header("Technical Skills")
-    for label, body in CONTENT["skills"]:
+    for label, body in C["skills"]:
         p = doc.add_paragraph()
         r = p.add_run(label + ": "); r.bold = True
         add_runs(p, body)
 
     header("Experience")
-    for e in CONTENT["experience"]:
+    for e in C["experience"]:
         entry_line(f'{e["org"]} — {e["role"]}', e["dates"])
         for b in e["bullets"]:
             bullet(b)
 
     header("Selected Publications")
-    for pub in CONTENT["publications"]:
+    for pub in C["publications"]:
         entry_line(pub["title"], pub["venue"])
         p = doc.add_paragraph(); p.paragraph_format.left_indent = Inches(0.2)
         r = p.add_run(pub["authors"]); r.font.size = Pt(9.5)
     p = doc.add_paragraph(); p.paragraph_format.space_before = Pt(2)
-    r = p.add_run(CONTENT["pub_note"]); r.italic = True; r.font.size = Pt(9)
+    r = p.add_run(C["pub_note"]); r.italic = True; r.font.size = Pt(9)
 
     header("Education")
-    for org, deg, when in CONTENT["education"]:
+    for org, deg, when in C["education"]:
         entry_line(f"{org} — {deg}", when)
 
     header("Selected Activities")
-    for org, role, when, desc in CONTENT["activities"]:
+    for org, role, when, desc in C["activities"]:
         entry_line(f"{org} — {role}", when)
         for d in desc:
             bullet(d)
@@ -281,7 +297,7 @@ def build_docx(path):
 # ----------------------------------------------------------------------------
 # PDF
 # ----------------------------------------------------------------------------
-def build_pdf(path):
+def build_pdf(path, C=CONTENT):
     from fpdf import FPDF
 
     FONT_DIR = "/System/Library/Fonts/Supplemental"
@@ -339,9 +355,9 @@ def build_pdf(path):
 
     # Header
     pdf.set_font("Arial", "B", 19)
-    pdf.cell(W, 0.32, CONTENT["name"], align="C", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(W, 0.32, C["name"], align="C", new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("Arial", "", BASE); pdf.set_text_color(*BLUE)
-    parts = CONTENT["contact"]
+    parts = C["contact"]
     sep = "   ·   "
     total = sum(pdf.get_string_width(t) for t, _ in parts) + pdf.get_string_width(sep) * (len(parts) - 1)
     pdf.set_x(pdf.l_margin + (W - total) / 2)
@@ -353,30 +369,30 @@ def build_pdf(path):
     pdf.ln(LH); pdf.set_text_color(0, 0, 0)
 
     header("Summary")
-    para(CONTENT["summary"])
+    para(C["summary"])
 
     header("Technical Skills")
-    for label, body in CONTENT["skills"]:
+    for label, body in C["skills"]:
         para(f"**{label}:** {body}")
 
     header("Experience")
-    for e in CONTENT["experience"]:
+    for e in C["experience"]:
         entry_line(f'{e["org"]} — {e["role"]}', e["dates"])
         for b in e["bullets"]:
             bullet(b)
 
     header("Selected Publications")
-    for pub in CONTENT["publications"]:
+    for pub in C["publications"]:
         entry_line(pub["title"], pub["venue"])
         para(pub["authors"], size=9.5, indent=0.15, lh=0.165)
-    pdf.ln(0.02); para(CONTENT["pub_note"], size=9, italic=True, lh=0.16)
+    pdf.ln(0.02); para(C["pub_note"], size=9, italic=True, lh=0.16)
 
     header("Education")
-    for org, deg, when in CONTENT["education"]:
+    for org, deg, when in C["education"]:
         entry_line(f"{org} — {deg}", when)
 
     header("Selected Activities")
-    for org, role, when, desc in CONTENT["activities"]:
+    for org, role, when, desc in C["activities"]:
         entry_line(f"{org} — {role}", when)
         for d in desc:
             bullet(d)
@@ -390,7 +406,7 @@ def build_pdf(path):
 # ----------------------------------------------------------------------------
 # Jekyll resume page
 # ----------------------------------------------------------------------------
-def build_site_md(path):
+def build_site_md(path, C=CONTENT):
     def esc(s):
         return s.replace("&", "&amp;").replace('"', '\\"')
 
@@ -401,24 +417,24 @@ def build_site_md(path):
     lines = ["---", "layout: list", "title: Eli Margolin - Resume",
              "download: /assets/files/Margolin_Resume.pdf", "sections:"]
 
-    lines += ["  - label: Summary", "    items:", f'      - body: "{esc(CONTENT["summary"])}"']
+    lines += ["  - label: Summary", "    items:", f'      - body: "{esc(C["summary"])}"']
 
     lines += ["  - label: Technical Skills", "    items:"]
-    for label, body in CONTENT["skills"]:
+    for label, body in C["skills"]:
         lines += [f'      - title: "{esc(label)}"', f'        body: "{esc(body)}"']
 
     lines += ["  - label: Experience", "    items:"]
-    for e in CONTENT["experience"]:
+    for e in C["experience"]:
         ul = "<ul>" + "".join(f"<li>{html_bold(esc(b))}</li>" for b in e["bullets"]) + "</ul>"
         lines += [f'      - title: "{esc(e["org"])} — {esc(e["role"])}"',
                   f'        meta: "{esc(e["dates"])}"',
                   f'        body: "{ul}"']
 
     lines += ["  - label: Selected Publications", "    items:"]
-    for i, pub in enumerate(CONTENT["publications"]):
+    for i, pub in enumerate(C["publications"]):
         body = esc(pub["authors"]) + "."
-        if i == len(CONTENT["publications"]) - 1:
-            body += f' <em>{esc(CONTENT["pub_note"])}</em>'
+        if i == len(C["publications"]) - 1:
+            body += f' <em>{esc(C["pub_note"])}</em>'
         lines += [f'      - title: "{esc(pub["title"])}"',
                   f'        meta: "{esc(pub["venue"])}"',
                   f'        body: "{body}"']
@@ -428,13 +444,13 @@ def build_site_md(path):
                 lines += [f"          - text: {text}", f"            url: {url}"]
 
     lines += ["  - label: Education", "    items:"]
-    for org, deg, when in CONTENT["education"]:
+    for org, deg, when in C["education"]:
         lines.append(f'      - title: "{esc(org)} — {esc(deg)}"')
         if when:
             lines.append(f'        meta: "{esc(when)}"')
 
     lines += ["  - label: Selected Activities", "    items:"]
-    for org, role, when, desc in CONTENT["activities"]:
+    for org, role, when, desc in C["activities"]:
         lines += [f'      - title: "{esc(org)} — {esc(role)}"',
                   f'        meta: "{esc(when)}"']
         if desc:
@@ -449,11 +465,12 @@ def build_site_md(path):
 if __name__ == "__main__":
     build_docx(DOCX_OUT)
     pages = build_pdf(PDF_OUT)
-    shutil.copyfile(PDF_OUT, SITE_PDF)
-    build_site_md(SITE_MD)
+    SC = site_content()
+    site_pages = build_pdf(SITE_PDF, SC)
+    build_site_md(SITE_MD, SC)
     print(f"docx -> {DOCX_OUT}")
-    print(f"pdf  -> {PDF_OUT} ({pages} page{'s' if pages != 1 else ''}); copied to {SITE_PDF}")
-    print(f"md   -> {SITE_MD}")
-    if pages != 1:
-        print("WARNING: PDF is not one page", file=sys.stderr)
+    print(f"pdf  -> {PDF_OUT} ({pages} page{'s' if pages != 1 else ''})")
+    print(f"site -> {SITE_PDF} ({site_pages} page{'s' if site_pages != 1 else ''}), {SITE_MD}")
+    if pages != 1 or site_pages != 1:
+        print("WARNING: a PDF is not one page", file=sys.stderr)
         sys.exit(1)
