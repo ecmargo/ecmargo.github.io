@@ -5,7 +5,7 @@ sections:
   - label: Publications
     items:
       - title: "Coral: Fast Succinct Non-Interactive Zero-Knowledge CFG Proofs"
-        meta: "IEEE Security and Privacy 2026 (forthcoming)"
+        meta: "IEEE Security and Privacy 2026"
         links:
           - text: blog post
             url: https://brave.com/blog/coral/
