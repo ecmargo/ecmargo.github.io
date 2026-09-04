@@ -431,17 +431,15 @@ def build_site_md(path, C=CONTENT):
                   f'        body: "{ul}"']
 
     lines += ["  - label: Selected Publications", "    items:"]
-    for i, pub in enumerate(C["publications"]):
-        body = esc(pub["authors"]) + "."
-        if i == len(C["publications"]) - 1:
-            body += f' <em>{esc(C["pub_note"])}</em>'
+    for pub in C["publications"]:
         lines += [f'      - title: "{esc(pub["title"])}"',
                   f'        meta: "{esc(pub["venue"])}"',
-                  f'        body: "{body}"']
+                  f'        body: "{esc(pub["authors"])}."']
         if pub["links"]:
             lines.append("        links:")
             for text, url in pub["links"]:
                 lines += [f"          - text: {text}", f"            url: {url}"]
+    lines.append(f'      - body: "<em>{esc(C["pub_note"])}</em>"')
 
     lines += ["  - label: Education", "    items:"]
     for org, deg, when in C["education"]:

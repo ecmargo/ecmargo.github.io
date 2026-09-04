@@ -45,12 +45,13 @@ sections:
             url: https://github.com/eniac/Reef
       - title: "Arboretum: A Planner for Large-Scale Federated Analytics with Differential Privacy"
         meta: "SOSP 2023"
-        body: "E. Margolin, K. Newatia, E. Roth, T. Luo, A. Haeberlen. <em>* Authors listed in alphabetical order.</em>"
+        body: "E. Margolin, K. Newatia, E. Roth, T. Luo, A. Haeberlen."
         links:
           - text: paper
             url: /assets/pdf/arboretum-sosp2023.pdf
           - text: code
             url: https://github.com/ecmargo/arboretum
+      - body: "<em>* Authors listed in alphabetical order.</em>"
   - label: Education
     items:
       - title: "University of Pennsylvania — PhD, Computer and Information Science"
